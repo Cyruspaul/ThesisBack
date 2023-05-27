@@ -1,0 +1,67 @@
+spring:
+  cloud:
+    circuitbreaker:
+      bulkhead:
+        resilience4j:
+          enabled: true
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: userModule
+  integration:
+    endpoint:
+      throw-exception-on-late-reply:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/fasystem_main?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  jackson:
+    default-property-inclusion: ALWAYS
+  redis:
+    host: 127.0.0.1
+    port: 6379
+server:
+  port: 8083
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+resilience4j.circuitbreaker:
+  instances:
+    fooClient:
+      registerHealthIndicator: true
+      slidingWindowSize: 50
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      eventConsumerBufferSize: 10
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 50
+      waitDurationInOpenState: 5s
+      permittedNumberOfCallsInHalfOpenState: 3
+resilience4j:
+  retry:
+    instances:
+      retryApi:
+        maxAttempts: 3
+        waitDuration: 3s
+        maxRetryAttempts: 3
+feign:
+  circuitbreaker:
+    enabled: true
+    group:
+      enabled: true
+  client:
+    refresh-enabled: true
+mybatis-plus:
+  check-config-location: false
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    web: debug
+#logging.level.org.springframework.cloud.gateway=TRACE

@@ -1,0 +1,25 @@
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com # oss对外服务的访问域名
+    accessKeyId: LTAI5tL2AzD9j1VfMkZ1rFYt # 访问身份验证中用到用户标识
+    accessKeySecret: Yzc7x3g1eArAsWkUDURD0231VTvMqz # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    bucketName: edu-systembase
+server:
+  #端口
+  port: 8038
+spring:
+  application:
+    #服务名
+    name: ossModule
+  profiles:
+    #开发环境配置
+    active: dev
+  config:
+    name: application
+    location: classpath:/config/
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://localhost:8761/eureka

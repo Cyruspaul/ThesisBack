@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyrus.mapper.TeachPlanDao">
+
+    <select id="getData" resultType="java.util.Map">
+        SELECT tp.id, tp.semester, tp.studyLevel, maj.major_name, coi.courseName, teai.teacherName, teai.title
+        FROM teach_plan tp
+                 LEFT JOIN majors maj
+                           ON tp.majorNo = maj.id
+                 LEFT JOIN course_info coi
+                           ON tp.courseNo = coi.courseNo
+                 LEFT JOIN course_type cotype
+                           ON tp.courseAttr = cotype.id
+                 LEFT JOIN teacher_info teai
+                           ON tp.teacher = teai.teacherNo
+        WHERE id = #{id}
+    </select>
+
+    <select id="getDataMap" resultType="java.util.Map">
+        SELECT tp.id, tp.semester, tp.studyLevel, maj.major_name, coi.courseName, teai.teacherName, teai.title
+        FROM teach_plan tp
+                 LEFT JOIN majors maj
+                           ON tp.majorNo = maj.id
+                 LEFT JOIN course_info coi
+                           ON tp.courseNo = coi.courseNo
+                 LEFT JOIN course_type cotype
+                           ON tp.courseAttr = cotype.id
+                 LEFT JOIN teacher_info teai
+                           ON tp.teacher = teai.teacherNo
+        WHERE tp.majorNo = #{id}
+          and tp.studyLevel = #{level}
+    </select>
+</mapper>

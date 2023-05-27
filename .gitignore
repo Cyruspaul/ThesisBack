@@ -1,0 +1,4 @@
+# Project exclude paths
+/admin-module/target/
+/oss-module/target/
+/school-module/target/
