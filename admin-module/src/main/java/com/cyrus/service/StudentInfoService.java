@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,21 +39,22 @@ public class StudentInfoService {
 
     public R search(Map<String, Object> data) {
         System.out.println(data);
-        List<StudentInfo> list = new ArrayList<>();
-        if (data.get("stuNumber") != null && data.get("stuName") != null) {
-            list = studentInfoMapper.selectList(new QueryWrapper<StudentInfo>()
-                    .like("stu_name", data.get("stuName"))
-                    .like("stu_number", data.get("stuNumber"))
-            );
-        } else if (data.get("stuNumber") == null) {
-            list = studentInfoMapper.selectList(new QueryWrapper<StudentInfo>()
-                    .like("stuName", data.get("stu_name"))
-            );
-        } else if (data.get("stuName") == null) {
-            list = studentInfoMapper.selectList(new QueryWrapper<StudentInfo>()
-                    .like("stu_number", data.get("stuNumber"))
-            );
-        }
+        List<StudentInfo> list = studentInfoMapper.selectByMap(data);
+//        if (data.get("stuNumber") != null && data.get("stuName") != null) {
+//            list = studentInfoMapper.selectList(new QueryWrapper<StudentInfo>()
+//                    .like("stu_name", data.get("stuName"))
+//                    .like("stu_number", data.get("stuNumber"))
+//            );
+//        } else if (data.get("stuNumber") == null) {
+//            list = studentInfoMapper.selectList(new QueryWrapper<StudentInfo>()
+//                    .like("stuName", data.get("stu_name"))
+//            );
+//        } else if (data.get("stuName") == null) {
+//            list = studentInfoMapper.selectList(new QueryWrapper<StudentInfo>()
+//                    .like("stu_number", data.get("stuNumber"))
+//            );
+//        }
+
 
         return R.ok().data("items", list);
 //        list.forEach(teacherInfo -> {
@@ -101,6 +101,7 @@ public class StudentInfoService {
 
     public R getbyId(String id) {
         StudentInfo byId = studentInfoMapper.selectById(id);
+
         return R.ok().data("student", byId);
     }
 }

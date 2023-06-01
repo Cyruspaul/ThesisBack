@@ -19,14 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * <p>
- * 专业表 前端控制器
- * </p>
- *
- * @author testjava
- * @since 2023-05-04
- */
+
 @Api("专业管理")
 @RestController
 @RequestMapping("/api/school/majors")

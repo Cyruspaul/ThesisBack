@@ -19,28 +19,32 @@ public class StudentInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "用户ID")
-    @TableId(value = "uid", type = IdType.ASSIGN_UUID)
+    @TableId(value = "uid", type = IdType.ASSIGN_ID)
     private String uid;
 
-    @ApiModelProperty(value = "学号")
     private String stuNumber;
 
-    @ApiModelProperty(value = "姓名")
     private String stuName;
 
-    @ApiModelProperty(value = "所属系部")
-    private String department;
+    private String stuEnName;
 
-    @ApiModelProperty(value = "所学专业")
+
+    private String birthday;
+
+
+    private String country;
+
+    private String phone;
+
+    private String email;
+
     private String major;
 
-    @ApiModelProperty(value = "所在班级")
     private String classId;
+    private String passport;
 
-    @ApiModelProperty(value = "学籍编号")
     private String enrollmentNumber;
 
-    @ApiModelProperty(value = "备注")
     private String remarks;
 
     @ApiModelProperty(value = "逻辑删除，1表示已删除，0表示未删除")

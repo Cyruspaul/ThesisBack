@@ -36,6 +36,8 @@ public class ApplicationInfo {
     @TableField(value = "student_en_name")
     private String name;
 
+    private String gender;
+
     @TableField(value = "student_birthday")
     private String birthday;
 
@@ -47,6 +49,9 @@ public class ApplicationInfo {
 
     @TableField(value = "student_country")
     private String country;
+
+
+    private String password;
 
     @TableField(value = "application_status")
     private int status;

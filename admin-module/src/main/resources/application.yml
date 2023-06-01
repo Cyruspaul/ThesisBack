@@ -28,9 +28,9 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
-logging:
-  level:
-    root: DEBUG
-    org:
-      springframework:
-        web: debug
+#logging:
+#  level:
+#    root: DEBUG
+#    org:
+#      springframework:
+#        web: debug

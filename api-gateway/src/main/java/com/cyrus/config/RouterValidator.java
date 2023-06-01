@@ -16,7 +16,7 @@ public class RouterValidator {
      * The constant openApiEndpoints.
      */
     public static final List<String> openApiEndpoints = List.of(
-            "/api/auth/register",
+            "/api/user/applicant",
             "/api/auth/login",
             "/gateway/error",
 //            "/api/oss/file/send",

@@ -18,6 +18,7 @@ public class Account {
     @TableId(type = IdType.ASSIGN_ID)
     private String id;
     private String account;
+    @JsonIgnore
     private String password;
     private String role;
     private String is_disabled;

@@ -62,6 +62,7 @@ public class AnnouncementService {
         publicationPO.setGmtModified(Date.valueOf(LocalDate.now()));
         publicationPO.setAuthor("Admin");
         publicationPO.setAviews(0);
+        publicationPO.setIsDeleted(false);
 
         int insert = announcementsMappper.insert(publicationPO);
         return APIResponse.success(insert).message("通告发布成功 ！！");

@@ -49,7 +49,10 @@ public class Application {
     @TableField(value = "application_status")
     private int status;
 
-    private int isDisabled;
+//
+//    private int isDisabled;
+
+    private int level;
 
     @ApiModelProperty(value = "逻辑删除，1表示已删除，0表示未删除")
     @TableLogic

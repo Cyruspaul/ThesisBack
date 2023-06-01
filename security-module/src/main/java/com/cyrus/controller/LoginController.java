@@ -1,11 +1,11 @@
 package com.cyrus.controller;
 
 import com.cyrus.config.APIResponse;
-import com.cyrus.models.DTO.UserModelDTO;
 import com.cyrus.models.DTO.UserRequestDTO;
 import com.cyrus.service.AuthServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
     @Autowired
     private final AuthServices authServices;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     @RequestMapping("/login")
     public APIResponse<?> login(@RequestBody UserRequestDTO userRequestDTO) {
@@ -24,8 +25,8 @@ public class LoginController {
     }
 
     @RequestMapping("/register")
-    public APIResponse<?> register(@RequestBody UserModelDTO userModelDTO) {
-        return authServices.registerNewUSer(userModelDTO);
+    public APIResponse<?> register() {
+        return APIResponse.success(redisTemplate.opsForValue().get("majorList"));
     }
 
 

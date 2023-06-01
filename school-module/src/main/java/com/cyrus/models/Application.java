@@ -34,10 +34,12 @@ public class Application {
     private String name;
 
     @TableField(value = "student_birthday")
-    private String birthday;
+    private Date birthday;
 
     @TableField(value = "student_phone")
     private String phone;
+
+    private String password;
 
     @TableField(value = "student_major")
     private String major;
@@ -47,6 +49,7 @@ public class Application {
 
     @TableField(value = "application_status")
     private int status;
+
 
     private int isDisabled;
 

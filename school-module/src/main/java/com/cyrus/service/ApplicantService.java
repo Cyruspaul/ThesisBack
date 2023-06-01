@@ -2,11 +2,14 @@ package com.cyrus.service;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.cyrus.MD5;
 import com.cyrus.config.APIResponse;
 import com.cyrus.config.FaSystemException;
 import com.cyrus.config.MinUnit_Constants;
+import com.cyrus.mapper.AccountMapper;
 import com.cyrus.mapper.ApplicationMapper;
 import com.cyrus.mapper.StudentInfoMapper;
+import com.cyrus.models.Account;
 import com.cyrus.models.Application;
 import com.cyrus.models.StudentInfo;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +27,7 @@ import java.util.Map;
 public class ApplicantService {
     private final ApplicationMapper applicantRepositoryMapper;
     private final StudentInfoMapper studentInfoMapper;
+    private final AccountMapper accountMapper;
     private final RedisTemplate<String, Object> redisKeyValueTemplate;
 
 
@@ -56,14 +60,26 @@ public class ApplicantService {
         if (exists) {
             return APIResponse.error().message("The user has already applied !!");
         } else {
-            boolean exists1 = studentInfoMapper.exists(new QueryWrapper<StudentInfo>()
-                    .eq("student_passport", applicantRegisterDTO.getPassport())
-                    .or()
-                    .eq("student_email", applicantRegisterDTO.getEmail()));
+            boolean exists1 = accountMapper.exists(new QueryWrapper<Account>()
+                    .eq("account", applicantRegisterDTO.getPassport())
+            );
             if (exists1) {
                 return APIResponse.error().message("You are a STUDENT !!");
             } else {
+                applicantRegisterDTO.setGmtModified(Date.valueOf(LocalDate.now()));
+                applicantRegisterDTO.setGmtCreate(Date.valueOf(LocalDate.now()));
+                applicantRegisterDTO.setIsDeleted(false);
                 insert = applicantRepositoryMapper.insert(applicantRegisterDTO);
+                Account account = new Account();
+
+                account.setAccount(applicantRegisterDTO.getPassport());
+                account.setPassword(MD5.encrypt(applicantRegisterDTO.getPassword()));
+                account.setRole("333333");
+                account.setIsDeleted(false);
+                account.setGmtModified(Date.valueOf(LocalDate.now()));
+                account.setGmtCreate(Date.valueOf(LocalDate.now()));
+
+                accountMapper.insert(account);
             }
         }
         return APIResponse.success(insert).message("Registration Success");
