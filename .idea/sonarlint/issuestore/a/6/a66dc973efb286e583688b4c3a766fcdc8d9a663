@@ -1,0 +1,19 @@
+
+b
+java:S1192„"KDefine a constant instead of duplicating this literal "sendername" 3 times.(œÙçá
+\
+java:S1192R"FDefine a constant instead of duplicating this literal "items" 6 times.(ç–úí
+^
+java:S1192X"HDefine a constant instead of duplicating this literal "account" 4 times.(£•ë©
+Q
+java:S18549";Remove this useless assignment to local variable "taskPOS".(æŒÜ
+B
+java:S14819",Remove this unused "taskPOS" local variable.(æŒÜ
+P	java:S125P"<This block of commented-out lines of code should be removed.(ıŒÏ7
+O
+java:S1854‚"8Remove this useless assignment to local variable "list".(Ÿ”é 
+V
+java:S1854Î":Remove this useless assignment to local variable "update".(¸ğ‡íúÿÿÿÿ
+G
+java:S1481Î"+Remove this unused "update" local variable.(¸ğ‡íúÿÿÿÿ
+d	java:S100â"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©æœ÷
